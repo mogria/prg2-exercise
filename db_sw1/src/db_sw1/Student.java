@@ -61,10 +61,11 @@ public class Student extends Person {
     
     @Override
     public void printAttributes(){
-        System.out.println("Firstname: " + this.studentNumber);
+        System.out.println("Studentnumber: " + this.studentNumber);
         System.out.println("Firstname: " + getFirstName());
         System.out.println("Name: " + getName());
         System.out.println("Course: " + this.course);
+        System.out.println(" ");
     }
 
 }

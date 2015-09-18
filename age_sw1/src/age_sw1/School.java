@@ -33,7 +33,7 @@ public class School {
     {
         for(Student stud : studentList.values())
         {
-            stud.Print();
+            stud.print();
         }
     }
 }
