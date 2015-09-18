@@ -7,14 +7,14 @@ package ch.hslu.prg2.ueb1;
 public class Teacher extends Person {
 
     
-    private String subject;
+    private Subject subject;
     private int salary;
     
     public Teacher(String name, String firstname) {
         super(name, firstname);
     }
 
-    public Teacher(String subject, int salary, String name, String firstname) {
+    public Teacher(Subject subject, int salary, String name, String firstname) {
         this(name, firstname);
         this.subject = subject;
         this.salary = salary;
