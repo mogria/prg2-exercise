@@ -7,15 +7,9 @@ package db_sw1;
 
 /**
  *
- * @author Diego
+ * @author Diego Bienz
  */
-public class Db_sw1 {
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        // TODO code application logic here
-    }
-    
+public class Person {
+    private String name;
+    private String firstName;
 }
