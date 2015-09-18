@@ -1,4 +1,4 @@
-package ch.hslu.prg2.ueb1;
+package ch.hslu.prg2.school;
 
 /**
  *
