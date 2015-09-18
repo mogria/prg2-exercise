@@ -12,6 +12,8 @@ package age_sw1;
 public class Teacher extends Person{
     private String subject;
     private Double salary;
+    private static int number;
+    private int TeacherNumber;
 
     public Teacher(String name, String firstname) {
         super(name, firstname);
@@ -52,9 +54,9 @@ public class Teacher extends Person{
     }
     
     @Override
-    public void Print()
+    public void print()
     {
-        System.out.println("");
+        System.out.println(super.getName() + " " + super.getFristname() + " " + salary.toString() + " " + subject);
     }
     
 }

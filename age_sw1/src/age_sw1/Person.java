@@ -52,8 +52,14 @@ public class Person {
         this.firstname = fristname;
     }
 
-    public void Print(){
+    public void print(){
         System.out.println(name + " " + firstname);
+    }
+    
+    @Override
+    public String toString()
+    {
+        return name + " " + firstname;
     }
     
 }

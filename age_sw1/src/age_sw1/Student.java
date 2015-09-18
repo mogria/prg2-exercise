@@ -49,9 +49,9 @@ public class Student extends Person{
     }
     
     @Override
-    public void Print()
+    public void print()
     {
-        System.out.println("");
+         System.out.println(super.toString() + " " + course);
     }
     
 }
