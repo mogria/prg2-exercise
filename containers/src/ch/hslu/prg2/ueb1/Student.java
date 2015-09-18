@@ -5,7 +5,7 @@ package ch.hslu.prg2.ueb1;
  * @author mogria
  */
 public class Student extends Person {
-    private int studentNumber;
+    private final int studentNumber;
     private String course;
     
     static private int number = 1000;
