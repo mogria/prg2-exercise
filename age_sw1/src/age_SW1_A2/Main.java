@@ -14,12 +14,13 @@ public class Main {
       public static void main(String[] args) {
         // TODO code application logic here
              
-      LinkedList<String> ll = new LinkedList<String>();
+      LinkedList<String> ll = new LinkedList<>();
       ll.insert("Test");
       ll.insert("blaaa");
       ll.insert("Klaus");
       
       System.out.println(ll.toString());
+      
                                 
     }
 }
