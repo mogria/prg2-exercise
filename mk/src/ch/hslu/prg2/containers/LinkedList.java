@@ -79,7 +79,7 @@ public class LinkedList<T> implements Iterable<T> {
     
     class ListNode<T> {
         private T value;
-        private ListNode next;
+        private ListNode<T> next;
 
         public T getValue() {
             return value;
@@ -96,23 +96,29 @@ public class LinkedList<T> implements Iterable<T> {
         public void setNext(ListNode next) {
             this.next = next;
         }
+        
+        @Override
+        public boolean equals(Object other) {
+            ListNode<T> otherListNode = (ListNode<T>) other;
+            if(otherListNode != null) {
+                return this.value.equals(otherListNode.getValue());
+            } else {
+                return false;
+            }
+        }
     }
     
     ListNode head = null;
-    ListNode tail = null;
     
     public LinkedList() {
         
     }
     
-    public void append(T value) {
+    public void insert(T value) {
         ListNode node = new ListNode();
-        if(tail == null) {
-            head = tail = node;
-        } else {
-            tail.setNext(node);
-            tail = node;
-        }
+        node.setValue(value);
+        node.setNext(head);
+        node = head;
     }       
         
     
@@ -120,13 +126,13 @@ public class LinkedList<T> implements Iterable<T> {
         Iterator<T> iterator = iterator();
         while(iterator.hasNext()) {
             T current = iterator.next();
-            if(current == value) iterator.remove();
+            if(current.equals(value)) iterator.remove();
         }
     }
     
     public boolean contains(T value) {
         for(T current : this) {
-            if(current == value) {
+            if(current.equals(value)) {
                 return true;
             }
         }

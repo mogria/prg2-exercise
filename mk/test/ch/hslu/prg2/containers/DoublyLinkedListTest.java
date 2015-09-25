@@ -8,7 +8,6 @@ package ch.hslu.prg2.containers;
 import java.util.Iterator;
 import org.junit.After;
 import org.junit.AfterClass;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -18,9 +17,9 @@ import static org.junit.Assert.*;
  *
  * @author mogria
  */
-public class LinkedListTest {
+public class DoublyLinkedListTest {
     
-    public LinkedListTest() {
+    public DoublyLinkedListTest() {
     }
     
     @BeforeClass
@@ -39,45 +38,69 @@ public class LinkedListTest {
     public void tearDown() {
     }
 
+    /**
+     * Test of get method, of class DoublyLinkedList.
+     */
     @Test
-    public void testSomeMethod() {
+    public void testGet() {
+        System.out.println("get");
+        int index = 0;
+        DoublyLinkedList instance = new DoublyLinkedList();
+        Object expResult = null;
+        Object result = instance.get(index);
+        assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of add method, of class LinkedList.
+     * Test of insert method, of class DoublyLinkedList.
      */
     @Test
-    public void testAdd() {
-        System.out.println("add");
+    public void testInsert() {
+        System.out.println("insert");
+        int index = 0;
         Object value = null;
-        LinkedList instance = new LinkedList();
-        instance.append(value);
-        Assert.assertEquals(null, instance.iterator().next());
+        DoublyLinkedList instance = new DoublyLinkedList();
+        instance.insert(index, value);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
     }
 
     /**
-     * Test of remove method, of class LinkedList.
+     * Test of append method, of class DoublyLinkedList.
+     */
+    @Test
+    public void testAppend() {
+        System.out.println("append");
+        Object value = null;
+        DoublyLinkedList instance = new DoublyLinkedList();
+        instance.append(value);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of remove method, of class DoublyLinkedList.
      */
     @Test
     public void testRemove() {
         System.out.println("remove");
         Object value = null;
-        LinkedList instance = new LinkedList();
+        DoublyLinkedList instance = new DoublyLinkedList();
         instance.remove(value);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of contains method, of class LinkedList.
+     * Test of contains method, of class DoublyLinkedList.
      */
     @Test
     public void testContains() {
         System.out.println("contains");
         Object value = null;
-        LinkedList instance = new LinkedList();
+        DoublyLinkedList instance = new DoublyLinkedList();
         boolean expResult = false;
         boolean result = instance.contains(value);
         assertEquals(expResult, result);
@@ -86,28 +109,15 @@ public class LinkedListTest {
     }
 
     /**
-     * Test of iterator method, of class LinkedList.
+     * Test of iterator method, of class DoublyLinkedList.
      */
     @Test
     public void testIterator() {
         System.out.println("iterator");
-        LinkedList instance = new LinkedList();
+        DoublyLinkedList instance = new DoublyLinkedList();
         Iterator expResult = null;
         Iterator result = instance.iterator();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of append method, of class LinkedList.
-     */
-    @Test
-    public void testAppend() {
-        System.out.println("append");
-        Object value = null;
-        LinkedList instance = new LinkedList();
-        instance.append(value);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
