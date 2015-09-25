@@ -35,6 +35,18 @@ public class DoubleLinkedList<T extends Comparable<T>> {
         return currentNode;
 
     }
+     public ListNode<T> findTail(T data)
+    {
+        ListNode<T> currentNode = head;
+        
+        
+        while ((currentNode != null) && currentNode.getNext() != null) {
+            currentNode = currentNode.getNext();
+        }
+        return currentNode;
+
+    }
+    
     
     public ListNode<T> find(T data)
     {
@@ -53,6 +65,7 @@ public class DoubleLinkedList<T extends Comparable<T>> {
       
         if (head == null){//First
             head = newNode;
+            tail = newNode;
             return true;
         }
            
@@ -67,9 +80,15 @@ public class DoubleLinkedList<T extends Comparable<T>> {
             }else{
                 head = newNode;
             }
-            
             currentNode.setPrev(newNode);
+        }else{ //Add to Tail
+           // currentNode = findTail(element);
+            currentNode = tail;
+            currentNode.setNext(newNode);
+            newNode.setPrev(currentNode);    
+            tail = newNode;
         }
+            
         
         return true;
         
@@ -78,8 +97,17 @@ public class DoubleLinkedList<T extends Comparable<T>> {
     public T remove(T element)
     {
         ListNode<T> currentNode = this.find(element);
-        currentNode.getPrev().setNext(currentNode.getNext());
-        currentNode.getNext().setPrev(currentNode.getPrev());
+        if (currentNode.getPrev() == null){//Head
+            currentNode.getNext().setPrev(null);
+             head = currentNode.getNext();    
+            
+        }else if (currentNode.getNext() == null) {//Tail
+            currentNode.getPrev().setNext(null);
+        }
+        else{
+            currentNode.getPrev().setNext(currentNode.getNext());
+            currentNode.getNext().setPrev(currentNode.getPrev());
+        }
         return currentNode.getValue();        
     }
     

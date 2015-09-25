@@ -17,13 +17,16 @@ public class Main {
             DoubleLinkedList<Integer> list = new DoubleLinkedList();
             
             list.add(11);
-            System.out.println(list.toString());
             list.add(5);
-            System.out.println(list.toString());
-            list.add(7);
-            System.out.println(list.toString());
+            list.add(7);    
             list.add(2);
-            
+            list.add(56);
+            list.add(52);
+            list.add(47);
+            list.add(129);
+            System.out.println(list.toString());
+            list.remove(2);
+            list.remove(129);
             System.out.println(list.toString());
                                 
     }
