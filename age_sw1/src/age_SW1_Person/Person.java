@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package age_sw1;
+package age_SW1_Person;
 
 /**
  *
