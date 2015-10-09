@@ -7,6 +7,7 @@ package age_SW4_GUI;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JButton;
 
 /**
  *
@@ -302,6 +303,9 @@ public class Calculator extends javax.swing.JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
        int val = 99;
+       
+       JButton btn = (JButton)e.getSource();
+       
        
        if (result != 9999999)
        {
