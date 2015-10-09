@@ -217,10 +217,10 @@ public class Calculator_v2 extends javax.swing.JFrame implements ActionListener 
             case "-":
             case "*":
             case "/":
-                cache2 = cache1;
+                cache2 = cache2== 0 ? cache1 : cache2;
+                System.out.println("" + cache2);
                 cache1 = 0;
                 action = e.getActionCommand();
-                jTextField.setText("" + cache1);
                 break;
             case "S":
                 
@@ -239,7 +239,7 @@ public class Calculator_v2 extends javax.swing.JFrame implements ActionListener 
                         jTextField.setText("" + cache2);
                         break;
                     case "-":
-                        cache2 = cache1 - cache2;
+                        cache2 = cache2 - cache1;
                         jTextField.setText("" + cache2);
                         break;
                     case "*":
