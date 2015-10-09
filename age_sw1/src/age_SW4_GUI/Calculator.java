@@ -25,6 +25,11 @@ public class Calculator extends javax.swing.JFrame implements ActionListener {
     public Calculator() {
         initComponents();
         
+        operand1 = 99;
+        operand2 = 99;
+        result = 9999999;
+        operator = Operator.UNKNOWN;
+        
         this.btn0.addActionListener(this);
         this.btn1.addActionListener(this);
         this.btn2.addActionListener(this);
@@ -40,6 +45,8 @@ public class Calculator extends javax.swing.JFrame implements ActionListener {
         this.btnMinus.addActionListener(this);
         this.btnMulti.addActionListener(this);
         this.btnDivision.addActionListener(this);
+        
+        this.btnEquals.addActionListener(this);
         
         
     }
@@ -294,6 +301,122 @@ public class Calculator extends javax.swing.JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-      
+       int val = 99;
+       
+       if (result != 9999999)
+       {
+           operand1 = 99;
+           operand2 = 99;
+           operator = Operator.UNKNOWN;
+           result = 9999999;
+           this.txtDisplay.setText("");
+       }
+       
+       if (e.getSource() == btn0)
+           val = 0;
+       else if (e.getSource() == btn1)
+           val = 1;
+       else if (e.getSource() == btn2)
+           val = 2;
+       else if (e.getSource() == btn3)
+           val = 3;
+       else if (e.getSource() == btn4)
+           val = 4;
+       else if (e.getSource() == btn5)
+           val = 5;
+       else if (e.getSource() == btn6)
+           val = 6;
+       else if (e.getSource() == btn7)
+           val = 7;
+       else if (e.getSource() == btn8)
+           val = 8;
+       else if (e.getSource() == btn9)
+           val = 9;
+       
+       if (operator == Operator.UNKNOWN && val != 99){
+           String tmp = "";
+           if (operand1 != 99)
+               tmp = String.valueOf(operand1);
+           
+           tmp += String.valueOf(val);
+           
+           operand1 = Integer.valueOf(tmp);
+            this.txtDisplay.setText(this.txtDisplay.getText() + String.valueOf(val));
+           return;
+               
+       }else if (operator != Operator.UNKNOWN && val != 99){
+         String tmp = "";
+           if (operand2 != 99)
+               tmp = String.valueOf(operand2);
+           
+           tmp += String.valueOf(val);
+           
+           operand2 = Integer.valueOf(tmp);
+            this.txtDisplay.setText(this.txtDisplay.getText() + String.valueOf(val));
+           return;
+       }
+     /*  
+     if (val != 99 && operand1 == 99){
+         operand1 = val;
+         this.txtDisplay.setText(String.valueOf(val));
+         return;
+     }
+     else if (val != 99 && operand2 == 99){
+         operand2 = val;
+         
+         this.txtDisplay.setText(this.txtDisplay.getText() + " " + String.valueOf(val));
+        return;
+     }
+     */
+     
+     if (e.getSource() == btnDivision){
+         operator = Operator.DIVIS;
+          this.txtDisplay.setText(this.txtDisplay.getText() + " / ");
+          return;
+     }
+     else if (e.getSource() == btnMinus){
+         operator = Operator.MINUS;
+          this.txtDisplay.setText(this.txtDisplay.getText() +" - ");
+          return;
+     }
+     else if (e.getSource() == btnPlus){
+         operator = Operator.PLUS;
+          this.txtDisplay.setText(this.txtDisplay.getText() + " + ");
+          return;
+     }
+     else if (e.getSource() == btnMulti){
+         operator = Operator.MULTI;
+          this.txtDisplay.setText(this.txtDisplay.getText() + " * ");
+          return;
+     }
+
+        
+     if (e.getSource() == btnEquals && operand1 != 99 && operand2 != 99 && operator != Operator.UNKNOWN){
+         switch(operator){
+             case PLUS:
+                 result = operand1 + operand2;
+                 break;
+             case MINUS:
+                 result = operand1 - operand2;
+                 break;
+             case MULTI:
+                 result = operand1 * operand2;
+                 break;
+             case DIVIS:
+                 result = operand1 / operand2;
+                 break;
+             default:
+                 result = 0;
+                 break;
+         }    
+         
+         this.txtDisplay.setText(String.valueOf(result));
+     }
+     else{
+         this.txtDisplay.setText("Error");
+     }
+       
+               
+        
     }
 }
