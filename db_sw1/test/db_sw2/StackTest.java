@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package age_SW2_DoubleLinkedList;
+package db_sw2;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -14,11 +14,11 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author Adrian
+ * @author Diego
  */
-public class MainTest {
+public class StackTest {
     
-    public MainTest() {
+    public StackTest() {
     }
     
     @BeforeClass
@@ -38,15 +38,17 @@ public class MainTest {
     }
 
     /**
-     * Test of main method, of class Main.
+     * Test of push method, of class Stack.
      */
     @Test
-    public void testMain() {
-        System.out.println("main");
-        String[] args = null;
-        Main.main(args);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    public void testPush() {
+        System.out.println("push");
+        String text = "Test";
+        Stack instance = new Stack<String>();
+        instance.push(text);
+        String expResult = "Test";
+        String result = (String)instance.pop();     //warum muss ich casten?
+        assertEquals(expResult, result);
     }
     
 }
