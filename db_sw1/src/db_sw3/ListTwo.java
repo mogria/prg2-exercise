@@ -49,6 +49,7 @@ public class ListTwo implements IList {
     @Override
     public boolean remove(int value) {
         // ?!?! was ist Unterschied von Integer Objekt und ganzzahliger Variable?
+        return true;
     }
 
     @Override
