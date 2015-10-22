@@ -10,6 +10,8 @@ package db_sw2;
  *
  * @author Diego
  */
+
+/**
 public class Ringbuffer<T> {
     
     private T[] queue;
@@ -39,4 +41,4 @@ public class Ringbuffer<T> {
     public boolean isFull() {         
         return (head == tail && queue[head] != null);     
     }  
-}
+}**/
