@@ -41,7 +41,7 @@ public final class AddressEntry {
          if (firstName == null || containsNumbers(firstName) || firstName.length() > 20 || firstName.equals(lastName) || String.valueOf(zip).length() != 4) {
             throw new IllegalArgumentException();
         }
-        if (validate(eMail)) {
+        if (!validate(eMail)) {
             throw new InvalidEmailAddressException(eMail);
         }
 

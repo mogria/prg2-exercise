@@ -60,17 +60,17 @@ public final class AddressBook {
     }
 
     /**
-     * Get the address entry at the specified possition.
+     * Get the address entry at the specified position.
      *
      * @param index zero based index
-     * @return Address entry at the spezified position according the sort order.
+     * @return Address entry at the specified position according the sort order.
      */
     public AddressEntry getAt(final int index) {
         return addresses.get(index);
     }
 
     /**
-     * Sorts the address lsit according the natural order.
+     * Sorts the address list according the natural order.
      */
     public void sort() {
         addresses.sort(null);
