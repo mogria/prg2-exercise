@@ -16,10 +16,10 @@ import java.util.logging.Logger;
  */
 public class Ball implements Runnable{
     
-    private static final int MIN_RADIUS = 20;
-    private static final int MAX_RADIUS = 50;
+    private static final int MIN_RADIUS = 10;
+    private static final int MAX_RADIUS = 80;
     private static final int MAX_RGB_VALUE = 255;
-    private static final int MAX_SPEED = 10;
+    private static final int MAX_SPEED = 15;
     private static final int FPS = 33;
     
     private Thread thread;
@@ -63,6 +63,7 @@ public class Ball implements Runnable{
     }
     
     public void fall(){
+        speed++;
         posY += speed;
     }
     
