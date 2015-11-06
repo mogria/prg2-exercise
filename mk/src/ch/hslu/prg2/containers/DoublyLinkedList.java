@@ -141,6 +141,11 @@ public class DoublyLinkedList<T> implements Iterable<T> {
     }
     
     public void insert(int index, T value) {
+        if(index == 0) {
+            prepend(value);
+            return;
+        }
+        
         ListNode<T> insertBefore = getNode(index);
         if(insertBefore == null) {
             append(value);
@@ -151,18 +156,32 @@ public class DoublyLinkedList<T> implements Iterable<T> {
             node.previous = insertBefore.previous;
             node.next = insertBefore;
             insertBefore.previous = node;
-                    
         }
     }     
     
     public void append(T value) {
         ListNode node = new ListNode();
+        node.setValue(value);
         if(head == null && tail == null)  {
             tail = head = node;
         } else {
             // insert at tail
             tail.next = node;
             node.previous = tail;
+            tail = node;
+        }
+    }
+    
+    
+    public void prepend(T value) {
+        ListNode node = new ListNode();
+        node.setValue(value);
+        if(head == null && tail == null) {
+            tail = head = node;
+        } else {
+            node.next = head;
+            head.previous = head;
+            head = node;
         }
     }
         

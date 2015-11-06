@@ -8,6 +8,7 @@ package ch.hslu.prg2.containers;
 import java.util.Iterator;
 import org.junit.After;
 import org.junit.AfterClass;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -59,12 +60,16 @@ public class DoublyLinkedListTest {
     @Test
     public void testInsert() {
         System.out.println("insert");
-        int index = 0;
-        Object value = null;
-        DoublyLinkedList instance = new DoublyLinkedList();
-        instance.insert(index, value);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        DoublyLinkedList<Integer> instance = new DoublyLinkedList<>();
+        instance.insert(0, 1); // [1]
+        instance.insert(0, 5); // [5 1]
+        instance.insert(1, 3); // [5 3 1]
+        instance.insert(1, 4); // [5 4 3 1]
+        instance.insert(2, 0); // [5 4 0 3 1]
+        
+        Assert.assertEquals(5, instance.get(0).intValue());
+        Assert.assertEquals(3, instance.get(1).intValue());
+        Assert.assertEquals(1, instance.get(2).intValue());
     }
 
     /**
@@ -73,11 +78,14 @@ public class DoublyLinkedListTest {
     @Test
     public void testAppend() {
         System.out.println("append");
-        Object value = null;
-        DoublyLinkedList instance = new DoublyLinkedList();
-        instance.append(value);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        DoublyLinkedList<Integer> instance = new DoublyLinkedList<>();
+        instance.append(1);
+        instance.append(5);
+        instance.append(3);
+        
+        Assert.assertEquals(1, instance.get(0).intValue());
+        Assert.assertEquals(5, instance.get(1).intValue());
+        Assert.assertEquals(3, instance.get(2).intValue());
     }
 
     /**
@@ -120,6 +128,22 @@ public class DoublyLinkedListTest {
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of prepend method, of class DoublyLinkedList.
+     */
+    @Test
+    public void testPrepend() {
+        System.out.println("prepend");
+        DoublyLinkedList<Integer> instance = new DoublyLinkedList<>();
+        instance.prepend(1);
+        instance.prepend(5);
+        instance.prepend(3);
+        
+        Assert.assertEquals(3, instance.get(0).intValue());
+        Assert.assertEquals(5, instance.get(1).intValue());
+        Assert.assertEquals(1, instance.get(2).intValue());
     }
     
 }
