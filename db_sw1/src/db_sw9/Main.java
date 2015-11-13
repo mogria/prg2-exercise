@@ -9,6 +9,8 @@ package db_sw9;
  *
  * @author Diego
  */
-public class ChatClient {
-    
+public class Main {
+    public static void main(String[] args) {
+        
+    }
 }
