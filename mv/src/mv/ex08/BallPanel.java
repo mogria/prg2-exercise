@@ -20,9 +20,8 @@ import javax.swing.JPanel;
  */
 public class BallPanel extends JPanel implements Runnable{
     
-    Thread thread;
-    List<Ball> balls;
-    Ball[] currentBalls;
+    private Thread thread;
+    private List<Ball> balls;
     
     public BallPanel(){
         if(thread == null){
@@ -37,39 +36,36 @@ public class BallPanel extends JPanel implements Runnable{
         balls.add(ball);
     }
     
-    public void removeFinishedBalls(){
-        try{
-            ListIterator i = balls.listIterator();
-            while(i.hasNext()){
-                Ball ball = (Ball) i.next();
-                if(ball.isFinished()){
-                    i.remove();
-                }
+    public synchronized void removeFinishedBalls(){
+        ListIterator i = balls.listIterator();
+        while(i.hasNext()){
+            Ball ball = (Ball) i.next();
+            if(ball.isFinished()){
+                i.remove();
             }
-        } catch(ConcurrentModificationException e){
-            System.out.println("ConcurrentModificationException catched :)");
         }
-        
     }
     
     @Override
     public void run(){
-        try {
-            while (true) {
-                currentBalls = balls.toArray(new Ball[balls.size()]);         
+        while (true) {
+            try {
                 Thread.sleep(33);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(BallPanel.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            if(balls.size() > 0){
                 this.repaint();
                 removeFinishedBalls();
             }
-        } catch (InterruptedException ex) {
-            Logger.getLogger(BallPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
     @Override
     public void paint(Graphics gfx){
         super.paint(gfx);
-        for(Ball ball : currentBalls){
+        for(Ball ball : balls){
             ball.draw(gfx);
         }
     }

@@ -35,7 +35,7 @@ public class Ball implements Runnable{
     
     private int canvasHeight;
     
-    public Ball(int posX, int posY, int canvasHeight){
+    public Ball(int posX, int posY, int canvasHeight, int canvasWidth){
         this.color = new Color((int) (Math.random() * MAX_RGB_VALUE),
                 (int) (Math.random() * MAX_RGB_VALUE),
                 (int) (Math.random() * MAX_RGB_VALUE),
@@ -43,8 +43,9 @@ public class Ball implements Runnable{
         
         this.radius = (int)((Math.random() * (MAX_RADIUS - MIN_RADIUS)) + MIN_RADIUS);
                
+        //posX < 0 ? radius : posX > canvasWidth ? canvasWidth - radius : posX;
         this.posX = posX;
-        this.posY = posY;
+        this.posY = posY > canvasHeight ? -radius : posY;
         
         this.speed = (int) ((Math.random() * MAX_SPEED) + 1);
         

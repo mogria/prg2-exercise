@@ -35,6 +35,7 @@ public class Balls extends JFrame{
         super("Balls");
         setSize(FRAME_WIDTH, FRAME_HEIGHT);
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
         
         panel = new BallPanel();
         panel.setBackground(Color.WHITE);
@@ -42,14 +43,14 @@ public class Balls extends JFrame{
         panel.addMouseMotionListener(new MouseAdapter() {
             @Override
             public void mouseDragged(MouseEvent e) {                
-                panel.addBall(new Ball(e.getX(), e.getY(), panel.getHeight()));
+                panel.addBall(new Ball(e.getX(), e.getY(), panel.getHeight(), panel.getWidth()));
             }
         });
         
         panel.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {                
-                panel.addBall(new Ball(e.getX(), e.getY(), panel.getHeight()));
+                panel.addBall(new Ball(e.getX(), e.getY(), panel.getHeight(), panel.getWidth()));
             }
         });
         
