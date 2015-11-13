@@ -11,6 +11,6 @@ package db_sw9;
  */
 public class Main {
     public static void main(String[] args) {
-        
+        ChatClient chatter = new ChatClient();
     }
 }
