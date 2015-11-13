@@ -90,7 +90,7 @@ public class Calculator extends javax.swing.JFrame implements ActionListener {
         switch(buttonLabel) {
             case '=':
                 
-                result = 
+                result = 0;
                 displayResult = true;
                 break;
             case '+':
@@ -191,7 +191,7 @@ public class Calculator extends javax.swing.JFrame implements ActionListener {
 
         getContentPane().add(jPanel2);
 
-        jPanel3.setLayout(new java.awt.GridLayout());
+        jPanel3.setLayout(new java.awt.GridLayout(1, 0));
 
         buttonNumber7.setText("7");
         buttonNumber7.setToolTipText("");
@@ -213,7 +213,7 @@ public class Calculator extends javax.swing.JFrame implements ActionListener {
 
         getContentPane().add(jPanel3);
 
-        jPanel4.setLayout(new java.awt.GridLayout());
+        jPanel4.setLayout(new java.awt.GridLayout(1, 0));
 
         buttonNumber4.setText("4");
         jPanel4.add(buttonNumber4);
@@ -229,7 +229,7 @@ public class Calculator extends javax.swing.JFrame implements ActionListener {
 
         getContentPane().add(jPanel4);
 
-        jPanel5.setLayout(new java.awt.GridLayout());
+        jPanel5.setLayout(new java.awt.GridLayout(1, 0));
 
         buttonNumber1.setText("1");
         jPanel5.add(buttonNumber1);
@@ -250,7 +250,7 @@ public class Calculator extends javax.swing.JFrame implements ActionListener {
 
         getContentPane().add(jPanel5);
 
-        jPanel6.setLayout(new java.awt.GridLayout());
+        jPanel6.setLayout(new java.awt.GridLayout(1, 0));
 
         buttonNumber0.setText("0");
         jPanel6.add(buttonNumber0);
@@ -266,7 +266,7 @@ public class Calculator extends javax.swing.JFrame implements ActionListener {
 
         getContentPane().add(jPanel6);
 
-        jPanel7.setLayout(new java.awt.GridLayout());
+        jPanel7.setLayout(new java.awt.GridLayout(1, 0));
 
         buttonClear.setText("C");
         jPanel7.add(buttonClear);
