@@ -53,7 +53,7 @@ public class LinkedListTest {
         System.out.println("add");
         Object value = null;
         LinkedList instance = new LinkedList();
-        instance.append(value);
+        //instance.append(value);
         Assert.assertEquals(null, instance.iterator().next());
     }
 

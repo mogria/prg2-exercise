@@ -47,7 +47,7 @@ public class KontoTest {
         double in = 1.0;
         Konto instance = new Konto(1.0, 0.01);
         instance.payIn(in);
-        Assert.assertEquals("correct salo after payIn()", instance.getSaldo(), expected, actual);
+        //Assert.assertEquals("correct salo after payIn()", instance.getSaldo(), expected, actual);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
