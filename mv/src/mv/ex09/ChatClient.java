@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package db_sw9;
+package mv.ex09;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -16,11 +16,10 @@ import java.util.logging.Logger;
  *
  * @author Diego
  */
-public class ChatClient {
+public class ChatClient{
     
-    InetAddress serverIP;
-    String ChatInput;
-    
+    private InetAddress serverIP;
+    private String ChatInput;    
     
     public ChatClient(){
         ChatInput = "";
@@ -29,9 +28,12 @@ public class ChatClient {
         }
         catch(UnknownHostException ex){
             System.out.println("Unable to resovle Host: " + ex);
-        }    
+        }
     }
     
+    /**
+     * Method to test the ChatServer
+     */
     public void echoClient(){
         
         try(
@@ -64,6 +66,9 @@ public class ChatClient {
         } 
     }
     
+    /**
+     * Main Method for the Chat Client.
+     */
     public void chatter(){
         try(
             Socket serverSocket = new Socket(serverIP, 9000);
@@ -74,23 +79,12 @@ public class ChatClient {
             new Thread(output).start();
             InputHandler input = new InputHandler(serverSocket);
             new Thread(input).start();
-            
-            System.out.println("Chatter startet.");
+
             while(true){
                 if(!(ChatInput.equals(""))){
                     System.out.println(ChatInput);
                     ChatInput = "";
                 }
-
-                /**
-                try {
-                    Thread.sleep(1000);
-                } catch (InterruptedException ex) {
-                    Logger.getLogger(ChatClient.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                System.out.println("ChatOutput: " + ChatOutput);
-                System.out.println("ChatInput: " + ChatInput);
-                **/
                 try {
                 Thread.sleep(0);
                 } catch (InterruptedException ex) {
@@ -175,7 +169,7 @@ public class ChatClient {
     }
     
     public static void main(String[] args) {
-        ChatClient client1 = new ChatClient();
-        client1.chatter();
+        ChatClient chat1 = new ChatClient();
+        chat1.chatter();
     }
 }
