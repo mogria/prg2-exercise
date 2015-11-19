@@ -9,115 +9,31 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import java.net.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.net.ServerSocket;
+import java.net.Socket;
 
 /**
  *
  * @author Dethrall
  */
-public class ChatServer{
-    
-    private static final int DEFAULT_PORT = 32946;
-    
-    private ServerSocket server;
-    public Socket client;
-    
-    private int portNumber;
-    
-    public ChatServer(){
-        init();
-        
-        BufferedReader inStream;
-            try {
-                inStream = new BufferedReader(new InputStreamReader(client.getInputStream()));
-                
-                String msg = inStream.readLine();
-                if(msg != null){
-                    System.out.println();
-                }
-            } catch (IOException ex) {
-                Logger.getLogger(ChatServer.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        
+public class ChatServer extends Thread{
+    int portNumber;
+            
+    public ChatServer(int portNumber){
+        this.portNumber = portNumber;
     }
     
-    private void init(){
-        try {
-            System.out.println("Your IP Address is: " + InetAddress.getLocalHost().getHostAddress());
-        } catch (UnknownHostException ex) {
-            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        portNumber = getPortNumberInput();
-        
-        connect();
-    }
-    
-    private void connect(){
-        try {
-            server = new ServerSocket(portNumber);
-            System.out.println("Waiting for connection...");
-            client = server.accept();
-            System.out.println("Connected to: " + client.getInetAddress().toString() + ":" + client.getPort());
+    @Override
+    public void run(){        
+        try(ServerSocket serverSocket = new ServerSocket(portNumber)){
+            System.out.println("the chat server has started");
             
-            BufferedReader inStream = new BufferedReader(new InputStreamReader(client.getInputStream()));
-            
-            try {
-                String msg = inStream.readLine();
-                if(msg != null){
-                    System.out.println();
-                }
-            } catch (IOException ex) {
-                Logger.getLogger(ChatServer.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            
-        } catch (IOException ex) {
-            Logger.getLogger(ChatServer.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-    
-    private int getPortNumberInput(){
-        int portNo = DEFAULT_PORT;
-        
-        System.out.println("Please enter the Port Number (Leave empty for default):");
-        
-        try(BufferedReader br = new BufferedReader(new InputStreamReader(System.in))){
-            if(!br.readLine().equals("")){
-                portNo = Integer.parseInt(br.readLine());
+            while(true){
+                new ChatClientHandler(serverSocket.accept()).start();
             }
         }
         catch(IOException e){
-            System.out.println("InputReader error!!! " + e.getLocalizedMessage());
+            System.out.println("exception occured: " + e.getMessage());
         }
-        
-        return portNo;
     }
-
-    public ServerSocket getServer() {
-        return server;
-    }
-
-    public void setServer(ServerSocket server) {
-        this.server = server;
-    }
-
-    public Socket getClient() {
-        return client;
-    }
-
-    public void setClient(Socket client) {
-        this.client = client;
-    }
-
-    public int getPortNumber() {
-        return portNumber;
-    }
-
-    public void setPortNumber(int portNumber) {
-        this.portNumber = portNumber;
-    }
-
-    
 }

@@ -11,6 +11,10 @@ package mv.ex09;
  */
 public class Main {
     public static void main(String[] args){
-        ChatServer server = new ChatServer();
+        ChatServer server = new ChatServer(9000);
+        server.start();
+        
+        ChatClient client = new ChatClient();
+        client.chatter();
     }
 }
