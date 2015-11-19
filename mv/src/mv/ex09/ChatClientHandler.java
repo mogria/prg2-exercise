@@ -11,6 +11,7 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -41,9 +42,12 @@ public class ChatClientHandler extends Thread{
             String inLine;
             while((inLine = in.readLine()) != null){
                 synchronized (clientWriters){
+                    String msg = clientSocket.getInetAddress().toString();
+                    msg += "\t" + new Date().toString() + "\t\t";
+                    msg += inLine;
                     for(PrintWriter singleOut : clientWriters){
                         if(!singleOut.equals(out)){
-                            singleOut.println(inLine);
+                            singleOut.println(msg);
                             singleOut.flush();
                         }
                     }
