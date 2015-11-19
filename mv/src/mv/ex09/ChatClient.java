@@ -20,15 +20,33 @@ public class ChatClient{
     
     private InetAddress serverIP;
     private String ChatInput;    
+    private int port;
     
     public ChatClient(){
         ChatInput = "";
-        try{
-            serverIP = InetAddress.getByName("10.3.98.100");
+        try {
+            System.out.println("Your Host: " + InetAddress.getLocalHost());
+        } catch (UnknownHostException ex) {
+            Logger.getLogger(ChatClient.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try(
+            BufferedReader br = new BufferedReader
+            (new InputStreamReader(System.in));
+            ){
+            System.out.println("Enter Server: ");
+            serverIP = InetAddress.getByName(br.readLine());
+            System.out.println("Enter Port: ");
+            port = Integer.parseInt(br.readLine());
+            System.out.println("Starting ChatClient to Server " + 
+                    serverIP + " with port " + port);
+            chatter();
         }
         catch(UnknownHostException ex){
             System.out.println("Unable to resovle Host: " + ex);
         }
+        catch(IOException ex){
+            System.out.println("IO Exception: " + ex);
+        }   
     }
     
     /**
@@ -37,7 +55,7 @@ public class ChatClient{
     public void echoClient(){
         
         try(
-            Socket serverSocket = new Socket(serverIP, 9000);
+            Socket serverSocket = new Socket(serverIP, port);
             BufferedReader in = new BufferedReader(new InputStreamReader
                (serverSocket.getInputStream()));
             PrintWriter out = new PrintWriter(serverSocket.getOutputStream());
@@ -71,7 +89,7 @@ public class ChatClient{
      */
     public void chatter(){
         try(
-            Socket serverSocket = new Socket(serverIP, 9000);
+            Socket serverSocket = new Socket(serverIP, port);
             ){
             System.out.println("Connection established");
             
