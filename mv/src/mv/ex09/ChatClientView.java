@@ -9,6 +9,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import javax.swing.JButton;
@@ -35,6 +36,7 @@ public class ChatClientView extends JFrame{
         super("Chat");
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setSize(WINDOW_WIDTH,WINDOW_HEIGHT);
+        GridBagConstraints c = new GridBagConstraints();
         
         chatPanel = new JPanel();
         controlPanel = new JPanel();
@@ -43,11 +45,24 @@ public class ChatClientView extends JFrame{
         sendButton = new JButton("Send");
         
         chatArea.setEditable(false);
-        
-        setResizable(false);
         setLayout(new GridBagLayout());
-        add(chatPanel);
-        add(controlPanel);
+        c.fill = GridBagConstraints.VERTICAL;
+        c.fill = GridBagConstraints.HORIZONTAL;
+        
+        c.weighty = 1;   //request any extra vertical space
+        c.weightx = 1;
+        c.gridx = 0;
+        c.gridy = 0;
+        
+        add(chatPanel, c);
+        c.fill = GridBagConstraints.VERTICAL;
+        c.anchor = GridBagConstraints.LINE_END;
+        c.gridx = GridBagConstraints.REMAINDER;
+        c.ipadx = 150;
+        c.gridy = 0;
+        add(controlPanel, c);
+        
+        controlPanel.setBackground(Color.red);
         chatPanel.setBackground(Color.white);
         chatPanel.setLayout(new GridLayout(2, 1));
         chatPanel.add(chatArea, BorderLayout.NORTH);
@@ -56,6 +71,7 @@ public class ChatClientView extends JFrame{
         controlPanel.setLayout(new BorderLayout());
         controlPanel.add(sendButton, BorderLayout.SOUTH);
         
+        //pack();
     }
     
     public static void main(String[] args) {
