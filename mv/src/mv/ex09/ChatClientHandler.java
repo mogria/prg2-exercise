@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -22,8 +23,11 @@ public class ChatClientHandler extends Thread{
     private final Socket clientSocket;
     private static final List<PrintWriter> clientWriters = new ArrayList();
     
+    private String username;
+    
     ChatClientHandler(Socket socket) {
         this.clientSocket = socket;
+        username = clientSocket.getInetAddress().getHostName().replace("/", "");
     }
     
     @Override
@@ -41,10 +45,19 @@ public class ChatClientHandler extends Thread{
             System.out.println("clients: " + clientWriters.size());
             String inLine;
             while((inLine = in.readLine()) != null){
+                
+                if(inLine.startsWith("name")){
+                    username = inLine.replace("name", "").trim();
+                }
+                
+                
+                SimpleDateFormat sdf = new SimpleDateFormat("hh:MM:ss");
+                String msg = sdf.format(new Date()) + ", " + username;
+                msg += "\r\n" + inLine;
+                
+                System.out.println(msg);
+                
                 synchronized (clientWriters){
-                    String msg = clientSocket.getInetAddress().toString();
-                    msg += "\t" + new Date().toString() + "\t\t";
-                    msg += inLine;
                     for(PrintWriter singleOut : clientWriters){
                         if(!singleOut.equals(out)){
                             singleOut.println(msg);
