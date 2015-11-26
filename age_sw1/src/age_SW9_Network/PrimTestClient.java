@@ -19,7 +19,7 @@ public class PrimTestClient {
 
     public static void main(String[] args) throws IOException {
         int port = 8888;
-        String host = "localhost";
+        String host = "127.0.0.1";
         BufferedReader keyStream
                 = new BufferedReader(new InputStreamReader(System.in));
         while (true) {
