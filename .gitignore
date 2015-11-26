@@ -3,3 +3,5 @@ dist
 nbbuild
 nbdist
 */nbproject/private
+
+*.class

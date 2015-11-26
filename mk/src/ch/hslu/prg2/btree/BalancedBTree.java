@@ -11,7 +11,7 @@ public class BalancedBTree<T extends Comparable<T>> extends BTree<T> {
     protected void insertOntoNode(BTreeNode<T> nodeToInsert, BTreeNode<T> parentNode) {
         super.insertOntoNode(nodeToInsert, parentNode);
 
-        rebalance((BalancedBTreeNode<T>)nodeToInsert);
+        rebalanceAfterInsert((BalancedBTreeNode<T>)nodeToInsert);
     }
 
     @Override
@@ -24,7 +24,7 @@ public class BalancedBTree<T extends Comparable<T>> extends BTree<T> {
             = (BalancedBTreeNode<T>)replacement;
 
         if(newNode == null) {
-            rebalanceAfterDelete(parent);
+            //rebalanceAfterDelete(parent);
         } else {
             rebalanceAfterInsert(newNode);
         }
@@ -58,17 +58,19 @@ public class BalancedBTree<T extends Comparable<T>> extends BTree<T> {
         }
         mutatedNode.updateHeight();
 
-        rebalance(parent); // move up to root node, if necessary
+        rebalanceAfterInsert(parent); // move up to root node, if necessary
     }
-
+/*
     private void rebalanceAfterDelete(BalancedBTreeNode<T> mutatedNode) {
         mutatedNode.updateHeight();
         if(mutatedNode == null) return;
+        BalancedBTreeNode<T> child = mutatedNode.getChild();
         BalancedBTreeNode<T> parent = mutatedNode.getParent();
         if(parent == null) return;
         parent.updateHeight();
 
         int parentBalance = parent.getBalance();
+        int childBalance = child.getBalance();
         if(parentBalance == 2) {
             if(childBalance == -1) {
                 rotateLeft(mutatedNode);
@@ -84,7 +86,7 @@ public class BalancedBTree<T extends Comparable<T>> extends BTree<T> {
 
         rebalance(parent); // move up to root node, if necessary
 
-    }
+    } */
 
     private void rotateRight(BalancedBTreeNode<T> node) {
         BalancedBTreeNode<T> leftChild = (BalancedBTreeNode<T>)node.getLeft();
