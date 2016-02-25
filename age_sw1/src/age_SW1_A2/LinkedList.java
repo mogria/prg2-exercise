@@ -29,6 +29,7 @@ public class LinkedList<T> {
     {
         if (!isFound(data))
         {
+            //klaus
             this.head = new ListNode(data,head);
         }
         
